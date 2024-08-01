@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/addaword/static/css/main.155c37d1.css",
+    "main.js": "/addaword/static/js/main.d2c96641.js",
+    "index.html": "/addaword/index.html",
+    "main.155c37d1.css.map": "/addaword/static/css/main.155c37d1.css.map",
+    "main.d2c96641.js.map": "/addaword/static/js/main.d2c96641.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.155c37d1.css",
+    "static/js/main.d2c96641.js"
+  ]
+}
