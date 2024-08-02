@@ -120,7 +120,7 @@ const Auth = () => {
                     onClick={() => setIsLogin(!isLogin)}
                     className="w-full bg-gray-700 hover:bg-gray-900 text-white font-bold py-3 rounded-lg mt-4 transition duration-300 ease-in-out transform hover:scale-105"
                 >
-                    {isLogin ? 'Create an account Prueba' : 'Login with an existing account'}
+                    {isLogin ? 'Create an account TEST' : 'Login with an existing account'}
                 </button>
             </div>
         </div>
