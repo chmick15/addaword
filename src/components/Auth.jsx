@@ -113,14 +113,14 @@ const Auth = () => {
                         type="submit"
                         className="w-full bg-blue-600 hover:bg-blue-800 text-white font-bold py-3 rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
                     >
-                        {isLogin ? 'Login Prueba' : 'Sign Up'}
+                        {isLogin ? 'Login' : 'Sign Up'}
                     </button>
                 </form>
                 <button
                     onClick={() => setIsLogin(!isLogin)}
                     className="w-full bg-gray-700 hover:bg-gray-900 text-white font-bold py-3 rounded-lg mt-4 transition duration-300 ease-in-out transform hover:scale-105"
                 >
-                    {isLogin ? 'Create an account' : 'Login with an existing account'}
+                    {isLogin ? 'Create an account Prueba' : 'Login with an existing account'}
                 </button>
             </div>
         </div>
