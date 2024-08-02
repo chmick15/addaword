@@ -113,7 +113,7 @@ const Auth = () => {
                         type="submit"
                         className="w-full bg-blue-600 hover:bg-blue-800 text-white font-bold py-3 rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
                     >
-                        {isLogin ? 'Login' : 'Sign Up'}
+                        {isLogin ? 'Login Prueba' : 'Sign Up'}
                     </button>
                 </form>
                 <button
