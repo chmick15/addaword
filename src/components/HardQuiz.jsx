@@ -98,7 +98,6 @@ const HardQuiz = () => {
     const handleShowAnswer = async () => {
         if (!currentQuestion) return;
 
-        // Set feedback before showing the answer
         setFeedback(`You have lost 2 points! The word "${currentQuestion.word}" (in ${getLanguageLabel(currentQuestion.wordLanguage)}) translates to "${currentQuestion.correctTranslation}" in ${getLanguageLabel(currentQuestion.targetLanguage)}.`);
         setShowAnswer(true);
         await updateUserScore(-2);
@@ -109,13 +108,12 @@ const HardQuiz = () => {
 
         await updateUserScore(-1);
         setFeedback('Question skipped. You have lost 1 point.');
-        setShowAnswer(false); // Ensure answer is not shown when skipping
+        setShowAnswer(false);
         setAnswerSubmitted(true);
         setQuestionSkipped(true);
     };
 
     const handleNextQuestion = () => {
-        // Clear feedback and move to the next question
         setFeedback('');
         generateQuestion(words);
     };
@@ -130,10 +128,17 @@ const HardQuiz = () => {
                     const currentData = snapshot.val();
                     const currentScore = currentData.score || 0;
                     await update(userRef, { score: currentScore + change });
+                } else {
+                    console.error('User data not found.');
+                    setFeedback('User data not found.');
                 }
             } catch (error) {
                 console.error('Error updating score:', error);
+                setFeedback('Error updating score. Please try again.');
             }
+        } else {
+            console.error('User not authenticated.');
+            setFeedback('User not authenticated. Please log in.');
         }
     };
 
@@ -189,27 +194,27 @@ const HardQuiz = () => {
                     onChange={handleAnswerChange}
                     placeholder={`Enter translation in ${getLanguageLabel(currentQuestion.targetLanguage)}`}
                     className="p-2 border border-gray-300 rounded mb-4 w-full max-w-md text-black"
-                    disabled={showAnswer || answerSubmitted || questionSkipped} // Disable input if answer is submitted, answer is shown, or question is skipped
+                    disabled={showAnswer || answerSubmitted || questionSkipped}
                 />
                 <div className="flex space-x-4 mb-4">
                     <button
                         onClick={handleSubmitAnswer}
                         className={`px-4 py-2 rounded text-white ${showAnswer || answerSubmitted || questionSkipped ? 'bg-gray-400 cursor-not-allowed' : 'bg-green-600 hover:bg-green-700'}`}
-                        disabled={showAnswer || answerSubmitted || questionSkipped} // Disable button if answer is submitted, answer is shown, or question is skipped
+                        disabled={showAnswer || answerSubmitted || questionSkipped}
                     >
                         Submit Answer
                     </button>
                     <button
                         onClick={handleShowAnswer}
                         className={`px-4 py-2 rounded text-white ${showAnswer || answerSubmitted || questionSkipped ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}
-                        disabled={showAnswer || answerSubmitted || questionSkipped} // Disable button if answer is shown or question is skipped
+                        disabled={showAnswer || answerSubmitted || questionSkipped}
                     >
                         Show Answer
                     </button>
                     <button
                         onClick={handleSkipQuestion}
                         className={`px-4 py-2 rounded text-white ${showAnswer || answerSubmitted ? 'bg-gray-400 cursor-not-allowed' : 'bg-red-600 hover:bg-red-700'}`}
-                        disabled={showAnswer || answerSubmitted} // Disable button if answer is submitted or answer is shown
+                        disabled={showAnswer || answerSubmitted}
                     >
                         Skip Question
                     </button>

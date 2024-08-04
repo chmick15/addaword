@@ -16,7 +16,6 @@ const languageOptions = [
 ];
 
 const filteredLanguageOptions = languageOptions.filter(opt => opt.value !== '');
-console.log(filteredLanguageOptions);
 
 const getLanguageLabel = (value) => {
     const option = languageOptions.find(opt => opt.value === value);

@@ -16,13 +16,22 @@ const NavBar = () => {
         const user = auth.currentUser;
         if (user) {
             const userRef = ref(database, `users/${user.uid}`);
-            onValue(userRef, (snapshot) => {
+
+            // Listener for user data
+            const unsubscribe = onValue(userRef, (snapshot) => {
                 const data = snapshot.val();
                 if (data) {
                     setUserName(data.name || 'User');
                     setScore(data.score || 0);
+                } else {
+                    console.error('No data found for the user.');
                 }
             });
+
+            return () => unsubscribe(); // Cleanup the listener on component unmount
+        } else {
+            setUserName('Guest');
+            setScore(0);
         }
     }, [setScore]);
 
@@ -34,7 +43,6 @@ const NavBar = () => {
     const handleLogout = async () => {
         try {
             await signOut(auth);
-            console.log("User signed out");
             navigate('/auth'); // Redirect to authentication page after logout
         } catch (error) {
             console.error("Error during logout:", error);

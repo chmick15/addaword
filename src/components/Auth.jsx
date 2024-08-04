@@ -32,8 +32,6 @@ const Auth = () => {
                         score: 0
                     });
                 }
-
-                console.log('User signed in:', user);
                 navigate('/word-list');
             } else {
                 // Sign up process
@@ -58,7 +56,6 @@ const Auth = () => {
                     displayName: username
                 });
 
-                console.log('User registered:', user);
                 navigate('/word-list');
             }
         } catch (error) {
